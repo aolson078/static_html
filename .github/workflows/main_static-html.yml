@@ -50,3 +50,10 @@ jobs:
           slot-name: "Production"
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9A0C7000D53E4BAABD328529567B638A }}
+
+      - name: "Deploy static files to Azure Web App"
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: "static-html"
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9A0C7000D53E4BAABD328529567B638A }}
+          package: .
