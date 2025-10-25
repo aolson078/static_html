@@ -15,9 +15,10 @@ jobs:
       - name: Prepare static content
         run: echo "Static site — no build needed."
 
-      - name: Deploy to Azure Web App (force zip)
+      - name: Deploy static HTML via ZipDeploy
         run: |
+          zip -r static-html.zip .
           curl -X POST \
-            -u ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9A0C7000D53E4BAABD328529567B638A }} \
+            -u "${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9A0C7000D53E4BAABD328529567B638A }}" \
             -T static-html.zip \
             "https://static-html-gwhgfjezcpawcah9.scm.azurewebsites.net/api/zipdeploy"
